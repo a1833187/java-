@@ -1,42 +1,41 @@
-package com.qrxedu.leedcode3;
-
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
+package com.qrxedu.leedcode5;
 
 /**
- * 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
+ * 给你一个字符串 s，找到 s 中最长的回文子串。
  * @author qiu
  * @version 1.8.0
- * 遍历所有起始位置，找到长度最长的非重复子串
  */
 public class Solution {
-    public int lengthOfLongestSubstring(String s) {
+    public String longestPalindrome(String s) {
         int len = s.length();
-        int res = 0;
+        String output = "";
         for(int i = 0; i < len; i++){
             char[] chars = s.substring(i).toCharArray();
-            res = Math.max(res,findMax(chars));
+            char[] chars1 = findMax(chars);
+            output = output.length()>chars1.length?output:new String(chars1);
         }
-        return res;
+        return output;
     }
-
-    /**
-     * 找到字符串中某个起始位置固定的非重复子串
-     * @param chars
-     * @return
-     */
-    public int findMax(char[] chars){
+    public char[] findMax(char[] chars){
         int len = chars.length;
-        ArrayList<Character> tmp = new ArrayList<>();
-        int i = 0;
-        for(; i < len; i++){
-            if(!tmp.contains(chars[i])){
-                tmp.add(chars[i]);
-            }else{
-                break;
+        int i = len - 1;
+        int j;
+        for(; i >= 0; i--){
+            if(chars[i] == chars[0]){
+                for(j = 0; j < (i+1)/2; j++){
+                    if(chars[j]!=chars[i-j]){
+                        break;
+                    }
+                }
+                if(j == (i+1)/2){
+                    char[] chars1 = new char[i+1];
+                    for(int k = 0; k < chars1.length;k++){
+                        chars1[k] = chars[k];
+                    }
+                    return chars1;
+                }
             }
         }
-        return tmp.size();
+       return new char[0];
     }
 }
