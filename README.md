@@ -1,2 +1,1 @@
-# java-
-## 记录一个Java菜鸟的学习过程
+This is a rookie learning java process
