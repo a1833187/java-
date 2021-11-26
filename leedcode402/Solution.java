@@ -3,6 +3,7 @@ package com.qrxedu.leedcode402;
 import java.util.Stack;
 
 /**
+ * 移除k位数字
  * @author qiu
  * @version 1.8.0
  */
