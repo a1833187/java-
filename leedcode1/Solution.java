@@ -1,5 +1,7 @@
 package com.qrxedu.leedcode1;
 
+import org.junit.jupiter.api.Test;
+
 /**
  * 两数之和
  * @author qiu
