@@ -1,6 +1,4 @@
-package com.qrxedu.leedcode100;
-
-import javax.swing.tree.TreeNode;
+package com.qrxedu.lcseries.leedcode100;
 
 /**
  * @author qiu
