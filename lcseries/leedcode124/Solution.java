@@ -1,4 +1,4 @@
-package qrxedu.leedcode124;
+package qrxedu.lcseries.leedcode124;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,31 +16,20 @@ public class Solution {
             this.val = val;
         }
     }
-    public int maxPathSum(TreeNode root){
-        List<Integer> list = new ArrayList<>();
-        inOrder(root,list);
-        int len = list.size();
-        int[] dp = new int[len];
-        dp[0] = list.get(0);
-        int max = list.get(0);
-        for(int i = 1; i < list.size(); i++){
-            dp[i] = Math.max(dp[i-1] + list.get(i),list.get(i));
-            if(dp[i] > max){
-                max = dp[i];
-            }
-        }
-        return max;
+    int ans = Integer.MIN_VALUE;
+    public int maxPathSum(TreeNode root) {
+        dfs(root);
+        return ans;
     }
-    public void inOrder(TreeNode root,List<Integer> list){
-        if(root != null && root.left != null){
-            inOrder(root.left,list);
-        }
-        if(root != null) {
-            list.add(root.val);
-        }
-        if(root != null && root.right != null){
-            inOrder(root.right,list);
+    private int dfs(TreeNode p){
+        if(p == null){
+            return 0;
         }
 
+        int leftA = Math.max(dfs(p.left),0);
+        int rightA = Math.max(dfs(p.right),0);
+
+        ans = Math.max(ans,leftA+rightA+p.val);
+        return p.val + Math.max(leftA,rightA);
     }
 }
